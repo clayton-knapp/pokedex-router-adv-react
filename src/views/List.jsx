@@ -16,14 +16,14 @@ export default function List() {
   //api call in useEffect
   useEffect(() => {
     async function fetchAndSetPokedex() {
-      const response = await fetch('https://pokedex-alchemy.herokuapp.com/api/pokedex');
+      const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${currentPage}`);
       const parsedData = await response.json();
       // console.log('parsedData', parsedData)
       setPokedex(parsedData.results);
       setIsLoading(false);
     }
     fetchAndSetPokedex();
-  }, []);
+  }, [currentPage]);
 
   // console.log('pokedex', pokedex)
   

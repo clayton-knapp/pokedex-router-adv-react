@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Item from '../components/Item';
+import styles from '../App.css';
 
 export default function List() {
 
@@ -27,9 +28,9 @@ export default function List() {
 
 
   return (
-    <div>
+    <div className={styles['list-page']}>
       <h2>Pokemon List:</h2>
-      <div className='list-container'>
+      <div className={styles['list-container']}>
         {isLoading
           ? <p>Loading Pokedex...</p>
           : pokedex.map((pokemon) => 

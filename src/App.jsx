@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import List from './views/List';
 import Detail from './views/Detail';
+import './App.css';
 
 export default function App() {
   return (

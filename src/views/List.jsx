@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Item from '../components/Item';
 
 export default function List() {
 
@@ -14,11 +16,12 @@ export default function List() {
       const parsedData = await response.json();
       // console.log('parsedData', parsedData)
       setPokedex(parsedData.results);
+      setIsLoading(false);
     }
     fetchAndSetPokedex();
   }, []);
 
-  // console.log('pokedex', pokedex)
+  console.log('pokedex', pokedex)
   
 
 
@@ -26,6 +29,22 @@ export default function List() {
   return (
     <div>
       <h2>Pokemon List:</h2>
+      <div className='list-container'>
+        {isLoading
+          ? <p>Loading Pokedex...</p>
+          : pokedex.map((pokemon) => 
+            <Link
+              key={pokemon.id}
+              to={`/pokemon/${pokemon.id}`}
+            >
+              <Item
+                pokemon={pokemon}
+              />
+            </Link>
+          )
+        }
+
+      </div>
     </div>
   )
 };

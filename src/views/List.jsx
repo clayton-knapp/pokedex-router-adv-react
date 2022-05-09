@@ -34,7 +34,7 @@ export default function List() {
       const url =
         search
           ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${search}`
-          : `https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}`;
+          : `https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}&perPage=${PER_PAGE}`;
       
           
       const response = await fetch(url);

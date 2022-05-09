@@ -3,29 +3,51 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Item from '../components/Item';
 import styles from '../App.css';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export default function List() {
 
   // state
+  const history = useHistory();
+  const location = useLocation();
   const [pokedex, setPokedex] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const PER_PAGE = 20;
   // const [currentPage, setCurrentPage] = useState(params.page ? parseInt(params.page) : 1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const page = new URLSearchParams(location.search).get('page') ?? 1;
+  // const [currentPage, setCurrentPage] = useState(page || 1);
+
+  console.log('page', page)
+
+  console.log('history', history);
+  console.log('location', location);
 
   //api call in useEffect
   useEffect(() => {
+
     async function fetchAndSetPokedex() {
-      const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${currentPage}`);
+      // setIsLoading(true);
+      const page = new URLSearchParams(location.search).get('page') ?? 1;
+      const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}`);
       const parsedData = await response.json();
       // console.log('parsedData', parsedData)
       setPokedex(parsedData.results);
       setIsLoading(false);
     }
     fetchAndSetPokedex();
-  }, [currentPage]);
+  }, [location.search]);
 
   // console.log('pokedex', pokedex)
+
+  function handlePrevPage() {
+    // setCurrentPage(currentPage - 1);
+    history.push(`/pokemon/?page=${Number(page) - 1 }`);
+  }
+
+  function handleNextPage() {
+    // setCurrentPage(currentPage + 1);
+    history.push(`/pokemon/?page=${Number(page) + 1}`);
+  }
   
 
 
@@ -33,15 +55,15 @@ export default function List() {
   return (
     <div className={styles['list-page']}>
       <h2>Pokemon List:</h2>
-      <h3>Page: {currentPage}</h3>
+      <h3>Page: {page}</h3>
       <div className={styles['button-container']}>
         <button
-          disabled={currentPage === 1}
-          onClick={()=> setCurrentPage(currentPage - 1)}
+          disabled={page === 1}
+          onClick={handlePrevPage}
         >Prev Page</button>
         <button
           disabled={pokedex.length < PER_PAGE}
-          onClick={()=> setCurrentPage(currentPage + 1)}
+          onClick={handleNextPage}
         >Next Page</button>
       </div>
       <div className={styles['list-container']}>

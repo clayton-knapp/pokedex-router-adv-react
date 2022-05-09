@@ -9,7 +9,7 @@ export default function Detail() {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
 
-  console.log('params', params);
+  // console.log('params', params);
 
   // API fetch for specific pokemon based on id in params
   useEffect(() => {

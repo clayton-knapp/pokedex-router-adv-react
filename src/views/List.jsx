@@ -13,29 +13,39 @@ export default function List() {
   const [pokedex, setPokedex] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const PER_PAGE = 20;
+
+  // get page from URLSearchParams if none set to 1
   const page = new URLSearchParams(location.search).get('page') ?? 1;
 
+  const [searchInput, setSearchInput] = useState('');
+  // get search from URLSearch Params, if none set to ''
+  const search = new URLSearchParams(location.search).get('search') ?? '';
 
-  console.log('page', page)
-
-  console.log('history', history);
-  console.log('location', location);
 
   // API call in useEffect
   useEffect(() => {
     async function fetchAndSetPokedex() {
       setIsLoading(true);
-      const page = new URLSearchParams(location.search).get('page') ?? 1;
-      const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}`);
+
+      // const page = new URLSearchParams(location.search).get('page') ?? 1;
+
+      // const search = new URLSearchParams(location.search).get('search') ?? '';
+
+      const url =
+        search
+          ? `https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${search}`
+          : `https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}`;
+      
+          
+      const response = await fetch(url);
       const parsedData = await response.json();
       // console.log('parsedData', parsedData)
       setPokedex(parsedData.results);
       setIsLoading(false);
     }
     fetchAndSetPokedex();
-  }, [location.search]);
+  }, [location.search]); //location.search here covers page and search
 
-  // console.log('pokedex', pokedex)
 
   function handlePrevPage() {
     history.push(`/pokemon/?page=${Number(page) - 1 }`);
@@ -43,6 +53,12 @@ export default function List() {
 
   function handleNextPage() {
     history.push(`/pokemon/?page=${Number(page) + 1}`);
+  }
+
+  function handleSearchSubmit(e) {
+    e.preventDefault();
+    history.push(`/pokemon/?search=${searchInput}`);
+    setSearchInput('');
   }
   
 
@@ -62,6 +78,22 @@ export default function List() {
           onClick={handleNextPage}
         >Next Page</button>
       </div>
+      <form action=""
+        onSubmit={handleSearchSubmit}
+      >
+        <label htmlFor="search">
+          Search:
+          <input
+            type="text"
+            name="search"
+            value={searchInput}
+            onChange={(e) => {setSearchInput(e.target.value)}}
+          />
+          <button type="submit">
+            Submit Search
+          </button>
+        </label>
+      </form>
       <div className={styles['list-container']}>
         {isLoading
           ? <p>Loading Pokedex...</p>

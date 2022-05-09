@@ -13,20 +13,18 @@ export default function List() {
   const [pokedex, setPokedex] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const PER_PAGE = 20;
-  // const [currentPage, setCurrentPage] = useState(params.page ? parseInt(params.page) : 1);
   const page = new URLSearchParams(location.search).get('page') ?? 1;
-  // const [currentPage, setCurrentPage] = useState(page || 1);
+
 
   console.log('page', page)
 
   console.log('history', history);
   console.log('location', location);
 
-  //api call in useEffect
+  // API call in useEffect
   useEffect(() => {
-
     async function fetchAndSetPokedex() {
-      // setIsLoading(true);
+      setIsLoading(true);
       const page = new URLSearchParams(location.search).get('page') ?? 1;
       const response = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${page}`);
       const parsedData = await response.json();
@@ -40,12 +38,10 @@ export default function List() {
   // console.log('pokedex', pokedex)
 
   function handlePrevPage() {
-    // setCurrentPage(currentPage - 1);
     history.push(`/pokemon/?page=${Number(page) - 1 }`);
   }
 
   function handleNextPage() {
-    // setCurrentPage(currentPage + 1);
     history.push(`/pokemon/?page=${Number(page) + 1}`);
   }
   
@@ -58,7 +54,7 @@ export default function List() {
       <h3>Page: {page}</h3>
       <div className={styles['button-container']}>
         <button
-          disabled={page === 1}
+          disabled={Number(page) === 1}
           onClick={handlePrevPage}
         >Prev Page</button>
         <button

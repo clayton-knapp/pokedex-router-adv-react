@@ -22,7 +22,7 @@ export default function List() {
     fetchAndSetPokedex();
   }, []);
 
-  console.log('pokedex', pokedex)
+  // console.log('pokedex', pokedex)
   
 
 
@@ -36,7 +36,7 @@ export default function List() {
           : pokedex.map((pokemon) => 
             <Link
               key={pokemon.id}
-              to={`/pokemon/${pokemon.id}`}
+              to={`/pokemon/${pokemon._id}`}
             >
               <Item
                 pokemon={pokemon}

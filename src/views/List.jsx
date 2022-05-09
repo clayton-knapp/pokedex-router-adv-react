@@ -85,7 +85,7 @@ export default function List() {
           Search:
           <input
             type="text"
-            name="search"
+            // name="search"
             value={searchInput}
             onChange={(e) => {setSearchInput(e.target.value)}}
           />

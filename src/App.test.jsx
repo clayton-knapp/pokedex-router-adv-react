@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 describe('Testing components and behavior of App', () => {
-  it.skip('Should test the list view, clicking on item to see detail view', async () => {
+  it('Should test the list view, clicking on item to see detail view', async () => {
     render(
       <MemoryRouter>
         <App />
@@ -34,7 +34,7 @@ describe('Testing components and behavior of App', () => {
     });
   });
 
-  it.skip('Should test the next and prev page button', async() => {
+  it('Should test the next and prev page button', async() => {
     render(
       <MemoryRouter>
         <App />
@@ -116,6 +116,48 @@ describe('Testing components and behavior of App', () => {
     await screen.findByRole('heading', {
       name: /bulbasaur/i
     });
+
+  });
+
+
+  it('Should test the detail page using inital entries and initial index', async() => {
+    render(
+      <MemoryRouter
+        initialEntries={['/pokemon/5ff4fb7cd89993a89cc6544f', '/pokemon/?page=2', '/pokemon/?search=onix']}
+        initialIndex={0}
+      >
+        <App />
+      </MemoryRouter>
+    );
+    
+    // initialEntries 0
+    // // should wait for loading message to be removed
+    await waitForElementToBeRemoved(screen.getByText(/loading/i));
+
+    // should load butterfree
+    await screen.findByRole('heading', {
+      name: /butterfree/i
+    });
+
+    // initialEntries 1
+    // should wait for loading message to be removed
+    // await waitForElementToBeRemoved(screen.getByText(/loading/i));
+
+    // // should load butterfree
+    // await screen.findByRole('heading', {
+    //   name: /charizard/i
+    // });
+
+
+    // initialEntries 2
+    // should wait for loading message to be removed
+    // await waitForElementToBeRemoved(screen.getByText(/loading/i));
+
+    // // should load butterfree
+    // await screen.findByRole('heading', {
+    //   name: /onix/i
+    // });
+
 
   });
 

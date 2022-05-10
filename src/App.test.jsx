@@ -279,11 +279,11 @@ describe('Testing components and behavior of App', () => {
   });
 
 
-  it.skip('Should test the detail page using inital entries and initial index', async() => {
+  it('Should test the detail page using inital entries and initial index', async() => {
     render(
       <MemoryRouter
         initialEntries={['/pokemon/5ff4fb7cd89993a89cc6544f', '/pokemon/?page=2', '/pokemon/?search=onix']}
-        initialIndex={0}
+        initialIndex={2}
       >
         <App />
       </MemoryRouter>
@@ -302,9 +302,9 @@ describe('Testing components and behavior of App', () => {
     // should wait for loading message to be removed
     // await waitForElementToBeRemoved(screen.getByText(/loading/i));
 
-    // // should load butterfree
+    // // should load starmie
     // await screen.findByRole('heading', {
-    //   name: /charizard/i
+    //   name: /starmie/i
     // });
 
 

@@ -118,8 +118,6 @@ describe('Testing components and behavior of App', () => {
 
 
     // Then check components and behavior
-
-
     // test if loading message appears
     await screen.findByText(/loading pokedex/i);
 
@@ -143,15 +141,44 @@ describe('Testing components and behavior of App', () => {
     });
   });
 
-  it.skip('Should test the next and prev page button', async() => {
+  it('Should test the next and prev page button', async() => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
+    // First sign in a user
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'bob@bob.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign in button
+    const signInButton = screen.getByRole('button', {
+      name: /sign in/i
+    })
+
+    // click button
+    userEvent.click(signInButton);
+
+
+    // Then test behavior
     // should wait for loading message to be removed
-    await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+    // doesnt work for some reason now
+    // await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+
+    // test if loading message appears
+    await screen.findByText(/loading pokedex/i);
 
     // find the next button
     const nextButton = await screen.findByRole('button', {

@@ -11,6 +11,10 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // if (context.user) {
+  //   history.replace('/pokemon')
+  // }
+
 
   async function handleSignInClick(e) {
     try {
@@ -21,7 +25,7 @@ export default function Login() {
       // console.log('user', user);
 
       if (user) {
-        history.replace('/pokemon')
+        history.replace('/pokemon');
       }
 
       
@@ -39,7 +43,7 @@ export default function Login() {
       // console.log('user', user);
 
       if (user) {
-        history.replace('/pokemon')
+        history.replace('/pokemon');
       }
 
     } catch (error) {

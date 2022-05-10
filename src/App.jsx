@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import List from './views/List';
 import Detail from './views/Detail';
+import Login from './views/Login';
 import './App.css';
 
 export default function App() {
@@ -22,9 +23,9 @@ export default function App() {
         <List />
       </Route>
 
-      {/* Route for Home -> Redirect to List for now */}
+      {/* Route for Home/Login */}
       <Route path='/'>
-        <Redirect exact from="/" to="/pokemon" />
+        <Login />
       </Route>
 
     </Switch>

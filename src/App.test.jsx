@@ -86,7 +86,7 @@ describe('Testing components and behavior of App', () => {
 
 
 
-  it.skip('Should test the list view, clicking on item to see detail view', async () => {
+  it('Should test the list view, clicking on item to see detail view', async () => {
     render(
       <MemoryRouter>
         <App />
@@ -108,20 +108,20 @@ describe('Testing components and behavior of App', () => {
     // type password
     userEvent.type(passwordInput, 'secret');
 
-    // grab sign up button
-    const signUpButton = screen.getByRole('button', {
-      name: /sign up/i
-    });
+    // grab sign in button
+    const signInButton = screen.getByRole('button', {
+      name: /sign in/i
+    })
 
     // click button
-    userEvent.click(signUpButton);
+    userEvent.click(signInButton);
 
 
-
+    // Then check components and behavior
 
 
     // test if loading message appears
-    screen.getByText(/loading pokedex/i);
+    await screen.findByText(/loading pokedex/i);
 
     // test if pikachu is visable
     const pikachu = await screen.findByRole('heading', {

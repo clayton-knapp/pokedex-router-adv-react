@@ -88,33 +88,36 @@ describe('Testing components and behavior of App', () => {
 
   it('Should test the list view, clicking on item to see detail view', async () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter
+        initialEntries={['/pokemon']}
+        initialIndex={0}
+      >
         <App />
       </MemoryRouter>
     );
 
     // First sign in a user
     // grab email input
-    const emailInput = screen.getByRole('textbox', {
-      name: /email:/i
-    });
+    // const emailInput = screen.getByRole('textbox', {
+    //   name: /email:/i
+    // });
 
-    // type email
-    userEvent.type(emailInput, 'bob@bob.com');
+    // // type email
+    // userEvent.type(emailInput, 'bob@bob.com');
 
-    // grab password input
-    const passwordInput = screen.getByLabelText(/password:/i);
+    // // grab password input
+    // const passwordInput = screen.getByLabelText(/password:/i);
 
-    // type password
-    userEvent.type(passwordInput, 'secret');
+    // // type password
+    // userEvent.type(passwordInput, 'secret');
 
-    // grab sign in button
-    const signInButton = screen.getByRole('button', {
-      name: /sign in/i
-    })
+    // // grab sign in button
+    // const signInButton = screen.getByRole('button', {
+    //   name: /sign in/i
+    // })
 
-    // click button
-    userEvent.click(signInButton);
+    // // click button
+    // userEvent.click(signInButton);
 
 
     // Then check components and behavior
@@ -143,33 +146,36 @@ describe('Testing components and behavior of App', () => {
 
   it('Should test the next and prev page button', async() => {
     render(
-      <MemoryRouter>
+      <MemoryRouter
+        initialEntries={['/pokemon']}
+        initialIndex={0}
+      >
         <App />
       </MemoryRouter>
     );
 
     // First sign in a user
     // grab email input
-    const emailInput = screen.getByRole('textbox', {
-      name: /email:/i
-    });
+    // const emailInput = screen.getByRole('textbox', {
+    //   name: /email:/i
+    // });
 
-    // type email
-    userEvent.type(emailInput, 'bob@bob.com');
+    // // type email
+    // userEvent.type(emailInput, 'bob@bob.com');
 
-    // grab password input
-    const passwordInput = screen.getByLabelText(/password:/i);
+    // // grab password input
+    // const passwordInput = screen.getByLabelText(/password:/i);
 
-    // type password
-    userEvent.type(passwordInput, 'secret');
+    // // type password
+    // userEvent.type(passwordInput, 'secret');
 
-    // grab sign in button
-    const signInButton = screen.getByRole('button', {
-      name: /sign in/i
-    })
+    // // grab sign in button
+    // const signInButton = screen.getByRole('button', {
+    //   name: /sign in/i
+    // })
 
-    // click button
-    userEvent.click(signInButton);
+    // // click button
+    // userEvent.click(signInButton);
 
 
     // Then test behavior
@@ -223,33 +229,36 @@ describe('Testing components and behavior of App', () => {
 
   it('Should test the search input', async() => {
     render(
-      <MemoryRouter>
+      <MemoryRouter
+      initialEntries={['/pokemon']}
+      initialIndex={0}
+      >
         <App />
       </MemoryRouter>
     );
 
     // First sign in a user
     // grab email input
-    const emailInput = screen.getByRole('textbox', {
-      name: /email:/i
-    });
+    // const emailInput = screen.getByRole('textbox', {
+    //   name: /email:/i
+    // });
 
-    // type email
-    userEvent.type(emailInput, 'bob@bob.com');
+    // // type email
+    // userEvent.type(emailInput, 'bob@bob.com');
 
-    // grab password input
-    const passwordInput = screen.getByLabelText(/password:/i);
+    // // grab password input
+    // const passwordInput = screen.getByLabelText(/password:/i);
 
-    // type password
-    userEvent.type(passwordInput, 'secret');
+    // // type password
+    // userEvent.type(passwordInput, 'secret');
 
-    // grab sign in button
-    const signInButton = screen.getByRole('button', {
-      name: /sign in/i
-    })
+    // // grab sign in button
+    // const signInButton = screen.getByRole('button', {
+    //   name: /sign in/i
+    // })
 
-    // click button
-    userEvent.click(signInButton);
+    // // click button
+    // userEvent.click(signInButton);
 
     // should wait for loading message to appear
     await screen.findByText(/loading pokedex/i);
@@ -283,7 +292,7 @@ describe('Testing components and behavior of App', () => {
     render(
       <MemoryRouter
         initialEntries={['/pokemon/5ff4fb7cd89993a89cc6544f', '/pokemon/?page=2', '/pokemon/?search=onix']}
-        initialIndex={2}
+        initialIndex={0}
       >
         <App />
       </MemoryRouter>

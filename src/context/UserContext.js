@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
   );
 } 
 
+
 // create custom hook to use the context so we don't have to import UserContext and useContext in our login file
 
 export const useUser = () => useContext(UserContext);

@@ -65,13 +65,13 @@ describe('Testing components and behavior of App', () => {
     // type password
     userEvent.type(passwordInput, 'secret');
 
-    // grab sign up button
-    const signUpButton = screen.getByRole('button', {
-      name: /sign up/i
-    });
+    // grab sign in button
+    const signInButton = screen.getByRole('button', {
+      name: /sign in/i
+    })
 
     // click button
-    userEvent.click(signUpButton);
+    userEvent.click(signInButton);
 
     // check for loading
     await screen.findByText(/loading pokedex/i);
@@ -92,6 +92,33 @@ describe('Testing components and behavior of App', () => {
         <App />
       </MemoryRouter>
     );
+
+    // First sign in a user
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'bob@bob.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign up button
+    const signUpButton = screen.getByRole('button', {
+      name: /sign up/i
+    });
+
+    // click button
+    userEvent.click(signUpButton);
+
+
+
+
 
     // test if loading message appears
     screen.getByText(/loading pokedex/i);

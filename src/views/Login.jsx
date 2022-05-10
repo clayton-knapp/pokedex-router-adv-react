@@ -56,7 +56,11 @@ export default function Login() {
   return (
     <div className={styles['sign-in-page']}>
       <h2>Sign In / Sign Up</h2>
-      <form action="email" className={styles['sign-in-form']}>
+      <form
+        action="email"
+        className={styles['sign-in-form']}
+        onSubmit={handleSignInClick}
+      >
         <label htmlFor="email">Email:
           <input
             required
@@ -79,9 +83,9 @@ export default function Login() {
           />
         </label>
         <button
-          // type="submit"
+          type="submit"
           aria-label="Sign In"
-          onClick={handleSignInClick}
+          // onClick={handleSignInClick}
         >Sign In</button>
         <button
           aria-label="Sign Up"

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { signUpUser, signInUser } from '../utils/user';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
+import styles from '../App.css';
 
 export default function Login() {
   // state
@@ -53,11 +54,12 @@ export default function Login() {
 
 
   return (
-    <div>
+    <div className={styles['sign-in-page']}>
       <h2>Sign In / Sign Up</h2>
-      <form action="email">
+      <form action="email" className={styles['sign-in-form']}>
         <label htmlFor="email">Email:
           <input
+            required
             type="email"
             name="email"
             id="email"
@@ -65,8 +67,10 @@ export default function Login() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
+
         <label htmlFor="password">Password:
           <input
+            required
             type="password"
             name="password"
             id="password"

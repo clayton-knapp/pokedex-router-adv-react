@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   const currentUser = getUser();
   const [user, setUser] = useState(currentUser || {});
 
-  console.log('FROM CONTEXT user', user);
+  // console.log('FROM CONTEXT user', user);
 
   return (
     // value prop is where you share your state

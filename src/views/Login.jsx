@@ -20,11 +20,11 @@ export default function Login() {
     try {
       e.preventDefault();
       const user = await signInUser({ email, password, });
-      context.setUser(user);
-
-      // console.log('user', user);
+      
+      // console.log('user', user); 
 
       if (user) {
+        context.setUser(user);
         history.replace('/pokemon');
       }
 
@@ -38,11 +38,11 @@ export default function Login() {
     try {
       e.preventDefault();
       const user = await signUpUser({ email, password, });
-      context.setUser(user);
       
       // console.log('user', user);
-
+      
       if (user) {
+        context.setUser(user);
         history.replace('/pokemon');
       }
 

@@ -19,14 +19,14 @@ export default function App() {
       <Switch>
 
         {/* Route for Detail */}
-        <Route path='/pokemon/:id'>
+        <PrivateRoute path='/pokemon/:id'>
           <Detail />
-        </Route>
+        </PrivateRoute>
 
         {/* Route for List */}
-        <Route path='/pokemon'>
+        <PrivateRoute path='/pokemon'>
           <List />
-        </Route>
+        </PrivateRoute>
 
         {/* Route for Home/Login */}
         <Route path='/'>

@@ -14,10 +14,11 @@ export default function PrivateRoute({ children, ...rest }) {
       {user.email
         ? children
         : <Redirect
-            to={{
-              pathname: '/',
-              state: { from: location }
-            }}
+            to='/'
+            // to={{
+            //   pathname: '/',
+            //   state: { from: location }
+            // }}
           />
       }
     </Route>

@@ -39,7 +39,15 @@
   text-decoration: none;
 }
 
-.detail {
+
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-container {
   width: 700px;
   border: 1px solid black;
   border-radius: 20px;
@@ -51,7 +59,7 @@
   justify-content: center;
 }
 
-.detail img {
+.detail-container img {
   width: 500px;
 }
 

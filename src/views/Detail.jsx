@@ -28,12 +28,12 @@ export default function Detail() {
 
 
   return (
-  <>
+  <div className={styles['detail-page']}>
       {isLoading
         ? <p>Loading Pokemon...</p>
         :
         <div
-        className={styles['detail']}
+        className={styles['detail-container']}
         style={{ backgroundColor: pokemon.color_1
         }}
         >
@@ -50,6 +50,6 @@ export default function Detail() {
           <h5>Shape: {pokemon.shape}</h5>
         </div>
         }
-    </>
+    </div>
   )
 };

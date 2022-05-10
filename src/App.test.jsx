@@ -4,7 +4,39 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 describe('Testing components and behavior of App', () => {
-  it('Should test the list view, clicking on item to see detail view', async () => {
+
+  it('Should sign up a new user, using mocked user data', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+
+    // grab password input
+
+    // type password
+
+    // grab sign up button
+
+    // click button
+
+    // check for loading
+
+    // check for a character
+    
+
+  });
+
+
+
+  it.skip('Should test the list view, clicking on item to see detail view', async () => {
     render(
       <MemoryRouter>
         <App />

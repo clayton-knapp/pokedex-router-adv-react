@@ -18,19 +18,69 @@ describe('Testing components and behavior of App', () => {
     });
 
     // type email
+    userEvent.type(emailInput, 'new@user.com');
 
     // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
 
     // type password
+    userEvent.type(passwordInput, 'secret');
 
     // grab sign up button
+    const signUpButton = screen.getByRole('button', {
+      name: /sign up/i
+    });
 
     // click button
+    userEvent.click(signUpButton);
 
     // check for loading
+    await screen.findByText(/loading pokedex/i);
 
     // check for a character
-    
+    await screen.findByRole('heading', {
+      name: /jigglypuff/i
+    });
+  
+  });
+
+  it('Should sign in an existing user, using mocked data', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'bob@bob.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign up button
+    const signUpButton = screen.getByRole('button', {
+      name: /sign up/i
+    });
+
+    // click button
+    userEvent.click(signUpButton);
+
+    // check for loading
+    await screen.findByText(/loading pokedex/i);
+
+    // check for a character
+    await screen.findByRole('heading', {
+      name: /arbok/i
+    });
+
 
   });
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { signUpUser, signInUser } from '../utils/user';
 import { useHistory } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 export default function Login() {
   // state
+  const context = useUser();
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,8 +16,9 @@ export default function Login() {
     try {
       e.preventDefault();
       const user = await signInUser({ email, password, });
+      context.setUser(user);
 
-      console.log('user', user);
+      // console.log('user', user);
 
       if (user) {
         history.replace('/pokemon')
@@ -31,6 +34,7 @@ export default function Login() {
     try {
       e.preventDefault();
       const user = await signUpUser({ email, password, });
+      context.setUser(user);
       
       // console.log('user', user);
 

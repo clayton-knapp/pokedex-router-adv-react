@@ -9,6 +9,8 @@ export const UserProvider = ({ children }) => {
   // state to manage
   const [user, setUser] = useState({});
 
+  // console.log('FROM CONTEXT user', user);
+
   return (
     // value prop is where you share your state
     <UserContext.Provider

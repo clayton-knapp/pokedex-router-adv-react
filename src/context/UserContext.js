@@ -8,6 +8,8 @@ const UserContext = createContext();
 // create Provider component - takes in children prop so it can be used as a wrapper
 export const UserProvider = ({ children }) => {
   // state to manage
+
+  //get the currentUser if logged in and set to state
   const currentUser = getUser();
   const [user, setUser] = useState(currentUser || {});
 

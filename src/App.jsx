@@ -7,12 +7,14 @@ import {
 import List from './views/List';
 import Detail from './views/Detail';
 import Login from './views/Login';
+import Header from './components/Header';
 import './App.css';
 import { UserProvider } from './context/UserContext';
 
 export default function App() {
   return (
     <UserProvider>
+      <Header />
       <Switch>
 
         {/* Route for Detail */}

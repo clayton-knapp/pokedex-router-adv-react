@@ -221,15 +221,38 @@ describe('Testing components and behavior of App', () => {
     });
   });
 
-  it.skip('Should test the search input', async() => {
+  it('Should test the search input', async() => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
-    // should wait for loading message to be removed
-    await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+    // First sign in a user
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'bob@bob.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign in button
+    const signInButton = screen.getByRole('button', {
+      name: /sign in/i
+    })
+
+    // click button
+    userEvent.click(signInButton);
+
+    // should wait for loading message to appear
+    await screen.findByText(/loading pokedex/i);
 
     // grab the search input
     const searchBox = screen.getByRole('textbox');

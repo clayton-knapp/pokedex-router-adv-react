@@ -4,15 +4,102 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 describe('Testing components and behavior of App', () => {
-  it('Should test the list view, clicking on item to see detail view', async () => {
+
+  it('Should sign up a new user, using mocked user data', async () => {
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
 
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'new@user.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign up button
+    const signUpButton = screen.getByRole('button', {
+      name: /sign up/i
+    });
+
+    // click button
+    userEvent.click(signUpButton);
+
+    // check for loading
+    await screen.findByText(/loading pokedex/i);
+
+    // check for a character
+    await screen.findByRole('heading', {
+      name: /jigglypuff/i
+    });
+  
+  });
+
+  it('Should sign in an existing user, using mocked data', async () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+
+    // grab email input
+    const emailInput = screen.getByRole('textbox', {
+      name: /email:/i
+    });
+
+    // type email
+    userEvent.type(emailInput, 'bob@bob.com');
+
+    // grab password input
+    const passwordInput = screen.getByLabelText(/password:/i);
+
+    // type password
+    userEvent.type(passwordInput, 'secret');
+
+    // grab sign in button
+    const signInButton = screen.getByRole('button', {
+      name: /sign in/i
+    })
+
+    // click button
+    userEvent.click(signInButton);
+
+    // check for loading
+    await screen.findByText(/loading pokedex/i);
+
+    // check for a character
+    await screen.findByRole('heading', {
+      name: /arbok/i
+    });
+
+
+  });
+
+
+
+  it('Should test the list view, clicking on item to see detail view', async () => {
+    render(
+      <MemoryRouter
+        initialEntries={['/pokemon']}
+        initialIndex={0}
+      >
+        <App />
+      </MemoryRouter>
+    );
+
+  
+    // Then check components and behavior
     // test if loading message appears
-    screen.getByText(/loading pokedex/i);
+    await screen.findByText(/loading pokedex/i);
 
     // test if pikachu is visable
     const pikachu = await screen.findByRole('heading', {
@@ -36,13 +123,20 @@ describe('Testing components and behavior of App', () => {
 
   it('Should test the next and prev page button', async() => {
     render(
-      <MemoryRouter>
+      <MemoryRouter
+        initialEntries={['/pokemon']}
+        initialIndex={0}
+      >
         <App />
       </MemoryRouter>
     );
 
+    // Then test behavior
     // should wait for loading message to be removed
-    await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+    // await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+
+    // test if loading message appears
+    await screen.findByText(/loading pokedex/i);
 
     // find the next button
     const nextButton = await screen.findByRole('button', {
@@ -87,13 +181,16 @@ describe('Testing components and behavior of App', () => {
 
   it('Should test the search input', async() => {
     render(
-      <MemoryRouter>
+      <MemoryRouter
+      initialEntries={['/pokemon']}
+      initialIndex={0}
+      >
         <App />
       </MemoryRouter>
     );
 
-    // should wait for loading message to be removed
-    await waitForElementToBeRemoved(screen.getByText(/loading pokedex/i));
+    // should wait for loading message to appear
+    await screen.findByText(/loading pokedex/i);
 
     // grab the search input
     const searchBox = screen.getByRole('textbox');
@@ -143,9 +240,9 @@ describe('Testing components and behavior of App', () => {
     // should wait for loading message to be removed
     // await waitForElementToBeRemoved(screen.getByText(/loading/i));
 
-    // // should load butterfree
+    // // should load starmie
     // await screen.findByRole('heading', {
-    //   name: /charizard/i
+    //   name: /starmie/i
     // });
 
 

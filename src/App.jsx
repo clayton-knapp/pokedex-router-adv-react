@@ -6,27 +6,35 @@ import {
 } from 'react-router-dom';
 import List from './views/List';
 import Detail from './views/Detail';
+import Login from './views/Login';
+import Header from './components/Header';
 import './App.css';
+import { UserProvider } from './context/UserContext';
+import PrivateRoute from './components/PrivateRoute';
 
 export default function App() {
   return (
-    <Switch>
+    
+    <UserProvider>
+      <Header />
+      <Switch>
 
-      {/* Route for Detail */}
-      <Route path='/pokemon/:id'>
-        <Detail />
-      </Route>
+        {/* Route for Detail */}
+        <PrivateRoute path='/pokemon/:id'>
+          <Detail />
+        </PrivateRoute>
 
-      {/* Route for List */}
-      <Route path='/pokemon'>
-        <List />
-      </Route>
+        {/* Route for List */}
+        <PrivateRoute path='/pokemon'>
+          <List />
+        </PrivateRoute>
 
-      {/* Route for Home -> Redirect to List for now */}
-      <Route path='/'>
-        <Redirect exact from="/" to="/pokemon" />
-      </Route>
+        {/* Route for Home/Login */}
+        <Route path='/'>
+          <Login />
+        </Route>
 
-    </Switch>
+      </Switch>
+    </UserProvider>
   );
 }

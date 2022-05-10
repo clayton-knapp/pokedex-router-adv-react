@@ -1,4 +1,4 @@
-export const data = {
+export const pokedexData20 = {
   "count": 801,
   "page": "1",
   "perPage": "20",
@@ -678,7 +678,7 @@ export const data = {
 // 20220509162958
 // https://pokedex-alchemy.herokuapp.com/api/pokedex?perPage=801
 
-export const data801 = {
+export const pokedexData801 = {
   "count": 801,
   "page": 1,
   "perPage": "801",
